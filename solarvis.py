@@ -1,15 +1,14 @@
 import streamlit as st
-import pandas as pd
+import pandas as pd 
 from matplotlib import pyplot as plt
 
 # Read in data
-solardata = pd.read_csv("Plant_1_Generation_Data.csv")
+solardata = pd.read_csv('Plant_1_Generation_Data.csv')
 
-# Add intro
-st.title("Solar Power Production")
+# Add intro 
+st.title('Solar Power Production')
 
-st.markdown(
-    """ ## A data vis demo by Bradford Gill
+st.markdown(""" ## A data vis demo by Bradford Gill
 Dataset: [Solar Power Generation](https://www.kaggle.com/datasets/anikannal/solar-power-generation-data)
 
 Data was collected at an indian solar plant over 34 days. It contains 7 Data points collected from 22 unique
@@ -23,44 +22,33 @@ inverters at 15 minute intervals.
  5   DAILY_YIELD,    float64: The Cumulative sum of power collected from the begining of the day \n
  6   TOTAL_YIELD,    float64: The Cumulative sum of power collected from the begining of the data measurement \n
 You can view the code on my [Github](LINKHERE)
-"""
-)
+""")
 
-st.markdown(
-    """
+st.markdown("""
 ### Histograms
-"""
-)
+""")
 
-# define classes
-classes = [
-    "DATE_TIME",
-    "PLANT_ID",
-    "SOURCE_KEY",
-    "DC_POWER",
-    "AC_POWER",
-    "DAILY_YIELD",
-    "TOTAL_YIELD",
-]
+# define classes 
+classes = ['DATE_TIME', 'PLANT_ID', 'SOURCE_KEY', 'DC_POWER', 'AC_POWER', 'DAILY_YIELD', 'TOTAL_YIELD']
 
-# visualize histograms
+# visualize histograms 
 fig, ax = plt.subplots()
-solardata[["DC_POWER", "AC_POWER", "DAILY_YIELD", "TOTAL_YIELD"]].hist(ax=ax)
+solardata[['DC_POWER', 'AC_POWER', 'DAILY_YIELD', 'TOTAL_YIELD']].hist(ax = ax)
 
 st.write(fig)
 
-# group based on SOURCE_KEY
-inverters = solardata.groupby("SOURCE_KEY")
-
+# get unique SOURCE_KEY values 
+inverters = solardata['SOURCE_KEY'].unique()
 
 # view AC Power over time
-st.markdown(
-    """
+st.markdown("""
 ### Total Yield Vs Time
-"""
-)
+casey was here
+
+jk
+""")
 
 fig, ax = plt.subplots()
-inverters["TOTAL_YIELD"].plot(ax=ax)
+inverters['TOTAL_YIELD'].plot(ax = ax)
 
 st.write(fig)
